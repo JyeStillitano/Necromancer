@@ -36,8 +36,11 @@ func chase():
 	if chase_target: 
 		var direction = (chase_target.global_position - global_position).normalized()
 		
+		if direction.x != 0: $AnimatedSprite.flip_h = direction.x < 0
+		
 		velocity = direction * speed
 		move_and_slide()
+		
 
 # MANAGE STATE =====================================================
 func change_state(state: State) -> void:

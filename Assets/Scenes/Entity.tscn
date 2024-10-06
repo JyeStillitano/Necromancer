@@ -17,10 +17,6 @@ radius = 122.004
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1lax"]
 radius = 27.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0d5ud"]
-atlas = ExtResource("2_7f5hb")
-region = Rect2(0, 0, 43, 37)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6kij"]
 atlas = ExtResource("2_7f5hb")
 region = Rect2(43, 0, 43, 37)
@@ -28,6 +24,10 @@ region = Rect2(43, 0, 43, 37)
 [sub_resource type="AtlasTexture" id="AtlasTexture_uabrv"]
 atlas = ExtResource("2_7f5hb")
 region = Rect2(86, 0, 43, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d5ud"]
+atlas = ExtResource("2_7f5hb")
+region = Rect2(0, 0, 43, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7yd2"]
 atlas = ExtResource("2_7f5hb")
@@ -297,13 +297,13 @@ region = Rect2(264, 0, 22, 33)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0d5ud")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_c6kij")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uabrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d5ud")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l7yd2")
@@ -351,7 +351,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_5qrrq")
 }],
 "loop": true,
-"name": &"attack",
+"name": &"Attack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -401,7 +401,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_c5xun")
 }],
 "loop": true,
-"name": &"dead",
+"name": &"Dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -430,7 +430,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_n1gcx")
 }],
 "loop": true,
-"name": &"hit",
+"name": &"Hit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -468,7 +468,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_s7k4c")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"Idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -485,7 +485,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_w0j7c")
 }],
 "loop": true,
-"name": &"react",
+"name": &"React",
 "speed": 5.0
 }, {
 "frames": [{
@@ -529,13 +529,14 @@ animations = [{
 "texture": SubResource("AtlasTexture_ilv68")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"Walk",
 "speed": 5.0
 }]
 
 [node name="Entity" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_fr0f1")
+speed = 50.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
@@ -555,8 +556,9 @@ shape = SubResource("CircleShape2D_b1lax")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5tugd")
-animation = &"idle"
-frame_progress = 0.368783
+animation = &"Attack"
+frame_progress = 0.121125
+speed_scale = 2.5
 
 [connection signal="body_entered" from="AgroArea" to="." method="_on_agro_area_body_entered"]
 [connection signal="body_exited" from="AgroArea" to="." method="_on_agro_area_body_exited"]
